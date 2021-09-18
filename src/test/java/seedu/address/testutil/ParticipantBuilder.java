@@ -9,11 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.particpant.BirthDate;
 import seedu.address.model.particpant.Note;
 import seedu.address.model.particpant.Participant;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,12 +21,14 @@ public class ParticipantBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "allergic to bees";
     public static final BirthDate DEFAULT_BIRTHDATE = BirthDate.of(2000, 8, 4);
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Remark remark;
     private Set<Tag> tags;
     private BirthDate birthDate;
     private Set<Note> notes;
@@ -44,6 +42,7 @@ public class ParticipantBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         birthDate = DEFAULT_BIRTHDATE;
         notes = new HashSet<>();
@@ -58,6 +57,7 @@ public class ParticipantBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
         birthDate = BirthDate.notSpecified();
         notes = new HashSet<>();
@@ -72,6 +72,7 @@ public class ParticipantBuilder {
         phone = participantToCopy.getPhone();
         email = participantToCopy.getEmail();
         address = participantToCopy.getAddress();
+        remark = participantToCopy.getRemark();
         tags = new HashSet<>(participantToCopy.getTags());
         birthDate = participantToCopy.getBirthDate();
         notes = new HashSet<>(participantToCopy.getNotes());
@@ -99,6 +100,14 @@ public class ParticipantBuilder {
      */
     public ParticipantBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code Participant} that we are building.
+     */
+    public ParticipantBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 
@@ -153,7 +162,7 @@ public class ParticipantBuilder {
 
 
     public Participant build() {
-        return new Participant(name, phone, email, address, tags, birthDate, notes, nextOfKins);
+        return new Participant(name, phone, email, address, tags, remark, birthDate, notes, nextOfKins);
     }
 
 }
