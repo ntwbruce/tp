@@ -8,11 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,9 +35,9 @@ public class Participant extends Person {
      * @param notes      notes attached by the manager.
      * @param nextOfKins nextOfKins of the person.
      */
-    public Participant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, BirthDate birthDate,
-                       Set<Note> notes, ArrayList<Person> nextOfKins) {
-        super(name, phone, email, address, tags);
+    public Participant(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark, 
+                       BirthDate birthDate, Set<Note> notes, ArrayList<Person> nextOfKins) {
+        super(name, phone, email, address, remark, tags);
         requireAllNonNull(birthDate, notes, nextOfKins);
         this.birthDate = birthDate;
         this.notes.addAll(notes);
