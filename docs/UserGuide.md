@@ -140,8 +140,8 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command. 
+ 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -168,7 +168,27 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon ..._ 
+
+### Adding an event: `addEvent`
+
+Creates an Event at the specified date and time.
+
+Format: `addEvent n/NAME d/DATE [t/TIME]` 
+
+Examples:
+* `addEvent n/CS2100 Finals d/2021-11-20 t/0900` creates an Event "CS2100 Finals" on 20th November 2021 9:00am.
+* `addEvent n/240Km Marathon d/2022-08-20` creates a full day Event "240km Marathon" on 20th August 2022.
+
+### Removing an event : `removeEvent`
+
+Removes an Event. If there are multiple events with the same name, specify the DATE (in YYYY-MM-DD format) and TIME (24h format) to remove that event.
+
+Format: `removeEvent n/NAME [d/DATE] [t/TIME]` 
+
+Examples:
+* `removeEvent n/CS2100 Finals d/2021-11-20  t/0900` removes the Event “CS2100 Finals” on 20th November 2021 9:00am.
+* `removeEvent n/240km Marathon d/2022-08-20` removes the Event “240km Marathon” on 20th August 2022.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,3 +210,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add Event** | `addEvent n/NAME d/DATE [t/TIME]` <br> e.g., `addEvent n/CS2100 Finals d/2021-11-20 t/0900`
+**Remove Event** | `removeEvent n/NAME [d/DATE] [t/TIME]`  <br> e.g., `removeEvent n/CS2100 Finals d/2021-11-20  t/0900`
