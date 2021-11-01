@@ -39,7 +39,7 @@ public class EventCard extends UiPart<Region> {
         date.setText(event.getDateString());
         time.setText(event.getTimeDisplayString());
         int noOfParticipants = event.getParticipants().size();
-        if (noOfParticipants <= 1) {
+        if (noOfParticipants == 1) {
             numberOfParticipants.setText(String.format("%d participant", noOfParticipants));
         } else {
             numberOfParticipants.setText(String.format("%d participants", noOfParticipants));
