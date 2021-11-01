@@ -30,7 +30,7 @@ public class AddNextOfKinCommand extends Command {
             + PREFIX_PHONE + "98234532 "
             + PREFIX_TAG + "Spouse ";
 
-    public static final String MESSAGE_SUCCESS = "Added \n%1$s \nto %2$s successfully";
+    public static final String MESSAGE_SUCCESS = "Added next of kin %1$s to participant %2$s successfully";
 
     private final Index participantIndex;
     private final NextOfKin nextOfKin;
@@ -70,7 +70,7 @@ public class AddNextOfKinCommand extends Command {
         selectedParticipant.addNextOfKin(nextOfKin);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                nextOfKin, selectedParticipant.getFullName()));
+                nextOfKin.getFullName(), selectedParticipant.getFullName()));
     }
 
     @Override

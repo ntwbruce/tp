@@ -21,7 +21,7 @@ public class AddNextOfKinParser implements Parser<AddNextOfKinCommand> {
     @Override
     public AddNextOfKinCommand parse(String args) throws ParseException {
 
-        String[] sections = args.split(" ");
+        String[] sections = args.split("\\s+");
 
         if (sections.length < 5) {
             throw new ParseException(String.format(

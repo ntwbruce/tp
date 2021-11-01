@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteNextOfKinParser implements Parser<DeleteNextOfKinCommand> {
     @Override
     public DeleteNextOfKinCommand parse(String args) throws ParseException {
-        String[] sections = args.split(" ");
+        String[] sections = args.split("\\s+");
 
         if (sections.length != 3) {
             throw new ParseException(String.format(

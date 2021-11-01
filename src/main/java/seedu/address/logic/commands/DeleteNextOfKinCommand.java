@@ -22,7 +22,7 @@ public class DeleteNextOfKinCommand extends Command {
             + "PARTICIPANT_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_SUCCESS = "Removed \n%1$s \nfrom %2$s successfully";
+    public static final String MESSAGE_SUCCESS = "Removed next of kin %1$s from participant %2$s successfully";
     public static final String MESSAGE_INVALID_NOK_INDEX = "The next-of-kin index provided is invalid!";
 
     private final Index nextOfKinIndex;
