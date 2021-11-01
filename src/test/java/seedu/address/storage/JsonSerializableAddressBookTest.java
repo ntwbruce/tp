@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -8,9 +9,11 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.participant.Participant;
 import seedu.address.testutil.TypicalEvents;
 import seedu.address.testutil.TypicalParticipants;
 
@@ -30,7 +33,12 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = TypicalParticipants.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        assertEquals(addressBookFromFile.getEventList(), typicalPersonsAddressBook.getEventList());
+        ObservableList<Participant> fromFileList = addressBookFromFile.getParticipantList();
+        ObservableList<Participant> typicalList = typicalPersonsAddressBook.getParticipantList();
+        for (int i = 0; i < typicalList.size(); i++) {
+            assertTrue(fromFileList.get(i).isSameParticipant(typicalList.get(i)));
+        }
     }
 
     @Test

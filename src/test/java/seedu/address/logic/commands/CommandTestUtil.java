@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -105,9 +106,13 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
-            assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            if (command instanceof EditCommand) {
+                assertEditCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+            } else {
+                CommandResult result = command.execute(actualModel);
+                assertEquals(expectedCommandResult, result);
+                assertEquals(expectedModel, actualModel);
+            }
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -121,6 +126,35 @@ public class CommandTestUtil {
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     * Used only for testing of EditCommand.
+     */
+    public static void assertEditCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+                                                Model expectedModel) {
+        try {
+            if (command instanceof EditCommand) {
+                CommandResult result = command.execute(actualModel);
+                assertEquals(expectedCommandResult, result);
+                assertEquals(expectedModel.getUserPrefs(), actualModel.getUserPrefs());
+                assertEquals(expectedModel.getFilteredEventList(), actualModel.getFilteredEventList());
+                FilteredList<Participant> expectedList =
+                        (FilteredList<Participant>) expectedModel.getFilteredParticipantList();
+                FilteredList<Participant> actualList =
+                        (FilteredList<Participant>) actualModel.getFilteredParticipantList();
+                for (int i = 0; i < expectedList.size(); i++) {
+                    assertTrue(expectedList.get(i).isSameParticipant(actualList.get(i)));
+                }
+            } else {
+                throw new AssertionError("assertEditCommandSuccess incorrectly called.");
+            }
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 
     /**

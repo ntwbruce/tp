@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARTICIPANT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -147,7 +149,13 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        assertEquals(expectedModel, model);
+        assertEquals(expectedModel.getUserPrefs(), model.getUserPrefs());
+        assertEquals(expectedModel.getFilteredEventList(), model.getFilteredEventList());
+        ObservableList<Participant> actualList = model.getFilteredParticipantList();
+        ObservableList<Participant> expectedList = expectedModel.getFilteredParticipantList();
+        for (int i = 0; i < expectedList.size(); i++) {
+            assertTrue(actualList.get(i).isSameParticipant(expectedList.get(i)));
+        }
     }
 
     /**

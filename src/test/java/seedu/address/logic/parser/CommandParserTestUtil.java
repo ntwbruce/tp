@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.AddCommand.isAddingSameParticipant;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -17,7 +19,28 @@ public class CommandParserTestUtil {
     public static void assertParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
-            assertEquals(expectedCommand, command);
+            if (command instanceof AddCommand) {
+                assertParseSameParticipantSuccess(parser, userInput, expectedCommand);
+            } else {
+                assertEquals(expectedCommand, command);
+            }
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * equals to {@code expectedCommand}.
+     */
+    private static void assertParseSameParticipantSuccess(Parser parser, String userInput, Command expectedCommand) {
+        try {
+            Command command = parser.parse(userInput);
+            if (command instanceof AddCommand) {
+                isAddingSameParticipant(command, expectedCommand);
+            } else {
+                assertEquals(expectedCommand, command);
+            }
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
