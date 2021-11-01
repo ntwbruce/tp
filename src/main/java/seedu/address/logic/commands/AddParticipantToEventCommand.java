@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventDate;
 import seedu.address.model.participant.Participant;
 
 public class AddParticipantToEventCommand extends Command {
@@ -23,6 +24,8 @@ public class AddParticipantToEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_ADD_PARTICIPANT_TO_EVENT_SUCCESS = "Added %1$s to %2$s successfully";
+    public static final String MESSAGE_COMPLETED_EVENT = "Cannot add a Participant to a completed Event!";
+    public static final String MESSAGE_PAST_EVENT = "Cannot add a Participant to a past Event!";
 
     private final Index participantIndex;
     private final Index eventIndex;
@@ -54,6 +57,11 @@ public class AddParticipantToEventCommand extends Command {
 
         try {
             selectedEvent = lastShownEventList.get(eventIndex.getZeroBased());
+            if (selectedEvent.getDoneValue()) {
+                throw new CommandException(MESSAGE_COMPLETED_EVENT);
+            } else if (!EventDate.isPresentOrFuture(selectedEvent.getDateString())) {
+                throw new CommandException(MESSAGE_PAST_EVENT);
+            }
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
