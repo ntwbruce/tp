@@ -234,7 +234,11 @@ public class Participant {
 
         return otherParticipant != null
                 && otherParticipant.getName().equals(getName())
-                && otherParticipant.getBirthDate().equals(getBirthDate());
+                && otherParticipant.getPhone().equals(getPhone())
+                && otherParticipant.getEmail().equals(getEmail())
+                && otherParticipant.getAddress().equals(getAddress())
+                && otherParticipant.getBirthDate().equals(getBirthDate())
+                && otherParticipant.getNextOfKins().equals(getNextOfKins());
     }
 
     /**
@@ -293,7 +297,9 @@ public class Participant {
                 && otherParticipant.getEmail().equals(getEmail())
                 && otherParticipant.getAddress().equals(getAddress())
                 && otherParticipant.getBirthDate().equals(getBirthDate())
-                && otherParticipant.getNextOfKins().equals(getNextOfKins());
+                && otherParticipant.getNextOfKins().equals(getNextOfKins())
+                && otherParticipant.getParticipantId().equals(getParticipantId());
+
     }
 
     @Override
