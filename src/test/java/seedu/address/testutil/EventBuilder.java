@@ -11,7 +11,7 @@ import seedu.address.model.participant.Participant;
 public class EventBuilder {
 
     public static final String DEFAULT_EVENT_NAME = "Sleep";
-    public static final String DEFAULT_EVENT_DATE = "2021-09-18";
+    public static final String DEFAULT_EVENT_DATE = "2022-09-18";
     public static final String DEFAULT_EVENT_TIME = "1000";
 
     private ObservableList<Participant> participants = FXCollections.observableArrayList();
