@@ -32,7 +32,7 @@ public class AddNextOfKinCommandTest {
         CommandResult commandResult =
                 new AddNextOfKinCommand(Index.fromOneBased(1), SARAH).execute(modelStub);
 
-        assertEquals(String.format(MESSAGE_SUCCESS, SARAH,
+        assertEquals(String.format(MESSAGE_SUCCESS, SARAH.getFullName(),
                 validParticipant.getFullName()), commandResult.getFeedbackToUser());
 
         assertTrue(validParticipant.hasNextOfKin(SARAH));

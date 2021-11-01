@@ -68,7 +68,7 @@ public class CommandResultTest {
     @Test
     public void isShowHelp_addEventCommand_returnsFalse() throws Exception {
         // CommandResult from AddEventCommand
-        assertFalse(new AddEventCommandParser().parse(" n/Marathon SG d/2021-10-10").execute(model).isShowHelp());
+        assertFalse(new AddEventCommandParser().parse(" n/Marathon SG d/2022-10-10").execute(model).isShowHelp());
     }
 
     @Test
@@ -200,7 +200,7 @@ public class CommandResultTest {
     @Test
     public void isExit_addEventCommand_returnsFalse() throws Exception {
         // CommandResult from AddEventCommand
-        assertFalse(new AddEventCommandParser().parse(" n/Marathon SG d/2021-10-10").execute(model).isExit());
+        assertFalse(new AddEventCommandParser().parse(" n/Marathon SG d/2022-10-10").execute(model).isExit());
     }
 
     @Test

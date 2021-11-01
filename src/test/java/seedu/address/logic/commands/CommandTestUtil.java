@@ -66,7 +66,7 @@ public class CommandTestUtil {
 
     public static final String VALID_EVENT_NAME_SLEEP = "Sleep";
     public static final String VALID_EVENT_NAME_JOGGING = "Jogging";
-    public static final String VALID_EVENT_DATE_SLEEP = "2021-10-10";
+    public static final String VALID_EVENT_DATE_SLEEP = "2022-10-10";
     public static final String VALID_EVENT_DATE_JOGGING = "2022-12-12";
     public static final String VALID_EVENT_TIME_SLEEP = "0000";
     public static final String VALID_EVENT_TIME_JOGGING = "2359";
