@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "Added participant:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists!";
 
     private final Participant toAdd;
 
@@ -67,6 +67,24 @@ public class AddCommand extends Command {
         }
         AddCommand otherAddCommand = (AddCommand) other;
         return otherAddCommand.toAdd.equals(toAdd);
+    }
+
+    /**
+     * Checks if two AddCommand objects contain Participants with identical details, except Participant ID.
+     * For testing usage in AddCommandTest only.
+     *
+     * @param command First AddCommand.
+     * @param otherCommand Second AddCommand.
+     * @return true if one object's Participant has the same details as the other AddCommand's Participant, except ID.
+     */
+    public static boolean isAddingSameParticipant(Command command, Command otherCommand) {
+        if (command instanceof AddCommand && otherCommand instanceof AddCommand) {
+            AddCommand addCommand = (AddCommand) command;
+            AddCommand otherAddCommand = (AddCommand) otherCommand;
+            return otherAddCommand.toAdd.isSameParticipant(addCommand.toAdd);
+        } else {
+            return false;
+        }
     }
 
     @Override
