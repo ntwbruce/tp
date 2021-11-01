@@ -73,8 +73,8 @@ public class ParticipantTest {
         // same object -> returns true
         assertEquals(ALEX, ALEX);
 
-        // object copy -> returns true
-        assertEquals(alexCopy, ALEX);
+        // same details, different object -> returns false
+        assertNotEquals(alexCopy, ALEX);
 
         // null -> returns false
         assertNotEquals(ALEX, null);
