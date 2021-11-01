@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class EventDate implements Comparable<EventDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in YYYY-MM-DD format!";
-    public static final String MESSAGE_PAST_DATE = "Date of new Event cannot be in the past!";
+    public static final String MESSAGE_PAST_DATE = "Event date cannot be in the past!";
     public static final String DATE_FORMAT = "y-M-d";
 
     private final LocalDate date;
