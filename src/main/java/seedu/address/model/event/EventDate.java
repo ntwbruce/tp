@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class EventDate implements Comparable<EventDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in YYYY-MM-DD format!";
+    public static final String MESSAGE_PAST_DATE = "Date of new Event cannot be in the past!";
     public static final String DATE_FORMAT = "y-M-d";
 
     private final LocalDate date;
@@ -45,6 +46,18 @@ public class EventDate implements Comparable<EventDate> {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if a given LocalDate instance is in the present or future.
+     * This is used to ensure the Event date is not in the past.
+     *
+     * @param test     A String representation of a LocalDate instance.
+     * @return         A boolean representing if the date is in the present or future.
+     */
+    public static boolean isPresentOrFuture(String test) {
+        LocalDate date = LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return (LocalDate.now().isEqual(date) || LocalDate.now().isBefore(date));
     }
 
     @Override
