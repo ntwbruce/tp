@@ -19,7 +19,8 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the event identified by the "
             + "index number used in the displayed event list as done.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Index should be positive integer.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DONE_EVENT_SUCCESS = "Marked event as done:\n%1$s";

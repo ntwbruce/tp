@@ -20,6 +20,7 @@ public class AddNextOfKinCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a next-of-kin to a participant with specified "
             + "index.\n"
+            + "Index should be positive integer.\n"
             + "Parameters: "
             + "PARTICIPANT_INDEX "
             + PREFIX_NAME + "NAME "

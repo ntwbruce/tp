@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ZERO_BASED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -28,12 +27,7 @@ public class AddNextOfKinParser implements Parser<AddNextOfKinCommand> {
                     MESSAGE_INVALID_COMMAND_FORMAT, AddNextOfKinCommand.MESSAGE_USAGE));
         }
 
-        Index participantIndex;
-        try {
-            participantIndex = ParserUtil.parseIndex(sections[1]);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_ZERO_BASED_INDEX);
-        }
+        Index participantIndex = ParserUtil.parseIndex(sections[1]);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_TAG);

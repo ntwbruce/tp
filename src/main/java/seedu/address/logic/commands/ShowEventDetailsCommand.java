@@ -19,6 +19,7 @@ public class ShowEventDetailsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the details of the event at the specified index.\n"
+            + "Index should be positive integer.\n"
             + "Parameters: INDEX \n"
             + "Example: " + COMMAND_WORD + " 1 ";
 

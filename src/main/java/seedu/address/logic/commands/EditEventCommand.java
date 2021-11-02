@@ -26,8 +26,9 @@ public class EditEventCommand extends Command {
     public static final String COMMAND_WORD = "editEvent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event with specified index. "
+            + "Index should be positive integer.\n"
             + "Existing details will be overwritten by the new input details.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIME + "TIME]\n"

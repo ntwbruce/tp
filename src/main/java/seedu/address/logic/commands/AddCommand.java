@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a participant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a participant to Managera. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "Added participant:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PARTICIPANT = "This participant already exists in Managera";
 
     private final Participant toAdd;
 

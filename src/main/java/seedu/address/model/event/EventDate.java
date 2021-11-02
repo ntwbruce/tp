@@ -14,8 +14,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class EventDate implements Comparable<EventDate> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in YYYY-MM-DD format!";
     public static final String MESSAGE_PAST_DATE = "Event date cannot be in the past!";
+    public static final String MESSAGE_CONSTRAINTS = "Date does not exist!";
+    public static final String MESSAGE_DATE_FORMAT_ERROR = "Dates should be in YYYY-MM-DD format!";
     public static final String DATE_FORMAT = "y-M-d";
 
     private final LocalDate date;
@@ -58,6 +59,10 @@ public class EventDate implements Comparable<EventDate> {
     public static boolean isPresentOrFuture(String test) {
         LocalDate date = LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));
         return (LocalDate.now().isEqual(date) || LocalDate.now().isBefore(date));
+    }
+        
+    public static boolean checkDateComponents(String date) {
+        return date.split("-").length == 3;
     }
 
     @Override

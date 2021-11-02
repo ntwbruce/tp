@@ -23,6 +23,7 @@ public class ShowEventParticipantsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays a list of participants of the event at the specified index.\n"
+            + "Index should be positive integer.\n"
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 

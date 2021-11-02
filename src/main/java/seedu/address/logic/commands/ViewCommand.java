@@ -19,7 +19,8 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the participant identified by the "
             + "index number used in the displayed participant list and displays the participant's details.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Index should be positive integer.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index targetIndex;
