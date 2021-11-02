@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalParticipants.ALEX;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +50,7 @@ public class TypicalEvents {
             new EventDate("2021-09-18"), new EventTime("1000"), true, new ArrayList<>());
     public static final Event SAMPLE_EVENT_COPY_DIFFERENT_PARTICIPANTS = new Event(new EventName("Sleep"),
             new EventDate("2021-09-18"), new EventTime("1000"), false,
-            Collections.singletonList(ALEX));
+            Collections.singletonList(SAMPLE_PARTICIPANT));
     public static final Event SAMPLE_EVENT_COPY_NO_TIME = new Event(new EventName("Slept"),
             new EventDate("2021-09-18"));
 
