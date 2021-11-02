@@ -27,9 +27,9 @@ public class FilterEventCommandTest {
     @Test
     public void equals() {
         EventDateTimePredicate firstPredicate =
-                new EventDateTimePredicate(Collections.singletonList("2021-09-18"));
+                new EventDateTimePredicate(Collections.singletonList("2022-09-18"));
         EventDateTimePredicate secondPredicate =
-                new EventDateTimePredicate(Arrays.asList("2021-09-18", "1000"));
+                new EventDateTimePredicate(Arrays.asList("2022-09-18", "1000"));
 
         FilterEventCommand filterFirstCommand = new FilterEventCommand(firstPredicate);
         FilterEventCommand filterSecondCommand = new FilterEventCommand(secondPredicate);
@@ -55,7 +55,7 @@ public class FilterEventCommandTest {
     public void execute_onlyDateInput_multipleEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 4);
         EventDateTimePredicate predicate =
-                new EventDateTimePredicate(Collections.singletonList("2021-09-18"));
+                new EventDateTimePredicate(Collections.singletonList("2022-09-18"));
         FilterEventCommand command = new FilterEventCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class FilterEventCommandTest {
     public void execute_dateAndTimeInput_oneEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
         EventDateTimePredicate predicate =
-                new EventDateTimePredicate(Arrays.asList("2021-09-18", "1001"));
+                new EventDateTimePredicate(Arrays.asList("2022-09-18", "1001"));
         FilterEventCommand command = new FilterEventCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -88,7 +88,7 @@ public class FilterEventCommandTest {
     public void execute_dateAndTimeInput_noEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
         EventDateTimePredicate predicate =
-                new EventDateTimePredicate(Arrays.asList("2021-09-18", "1020"));
+                new EventDateTimePredicate(Arrays.asList("2022-09-18", "1020"));
         FilterEventCommand command = new FilterEventCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
