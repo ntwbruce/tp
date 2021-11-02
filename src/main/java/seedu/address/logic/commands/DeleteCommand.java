@@ -19,7 +19,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the participant identified by the index number used in the displayed participant list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Index should be positive integer.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PARTICIPANT_SUCCESS = "Deleted participant:\n%1$s";

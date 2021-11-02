@@ -69,15 +69,16 @@ class AddParticipantToEventCommandTest {
         Participant validParticipant = new ParticipantBuilder().build();
         EventBuilder eventBuilder = new EventBuilder();
         eventBuilder.addParticipant(validParticipant);
+        Event event = eventBuilder.build();
 
         ModelStubWithEventAndParticipant modelStub =
-                new ModelStubWithEventAndParticipant(validParticipant, eventBuilder.build());
+                new ModelStubWithEventAndParticipant(validParticipant, event);
 
         AddParticipantToEventCommand addParticipantToEventCommand =
                 new AddParticipantToEventCommand(Index.fromOneBased(1), Index.fromOneBased(1));
 
         assertThrows(CommandException.class,
-                Messages.showParticipantExists(validParticipant.getFullName()), () ->
+                Messages.showParticipantAlreadyEnrolled(validParticipant.getFullName(), event.getNameString()), () ->
                         addParticipantToEventCommand.execute(modelStub));
     }
 

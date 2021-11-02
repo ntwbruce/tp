@@ -28,7 +28,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_IMPORTANCE = "Illegal Importance parsed";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -139,6 +138,10 @@ public class ParserUtil {
         String trimmedBirthDate = birthDate.trim();
         if (trimmedBirthDate.equals("N/A")) {
             return BirthDate.notSpecified();
+        } else if (!BirthDate.checkDateComponents(trimmedBirthDate)) {
+            throw new ParseException(BirthDate.MESSAGE_DATE_FORMAT_ERROR);
+        } else if (!BirthDate.isValidDate(trimmedBirthDate)) {
+            throw new ParseException(BirthDate.MESSAGE_DATE_DOES_NOT_EXIST);
         } else if (!BirthDate.isValidBirthDate(trimmedBirthDate)) {
             throw new ParseException(BirthDate.MESSAGE_DATE_CONSTRAINTS);
         }
@@ -150,7 +153,6 @@ public class ParserUtil {
      */
     public static NextOfKin parseNextOfKin(String nextOfKin) throws ParseException {
         requireNonNull(nextOfKin);
-        // TODO: IMPLEMENT THIS
         return new NextOfKin(new Name("Test"), new Phone("12345678"), new Tag("Test"));
     }
 
@@ -184,7 +186,9 @@ public class ParserUtil {
     public static EventDate parseEventDate(String eventDate) throws ParseException {
         requireNonNull(eventDate);
         String trimmedEventDate = eventDate.trim();
-        if (!EventDate.isValidDate(trimmedEventDate)) {
+        if (!EventDate.checkDateComponents(trimmedEventDate)) {
+            throw new ParseException(EventDate.MESSAGE_DATE_FORMAT_ERROR);
+        } else if (!EventDate.isValidDate(trimmedEventDate)) {
             throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
         }
         return new EventDate(trimmedEventDate);

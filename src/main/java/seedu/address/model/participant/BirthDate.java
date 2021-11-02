@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Participant's date of birth in the event.
@@ -15,7 +16,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class BirthDate {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future.";
+    public static final String MESSAGE_DATE_FORMAT_ERROR = "Dates should be in YYYY-MM-DD format!";
+    public static final String MESSAGE_DATE_DOES_NOT_EXIST = "Date does not exist!";
     public static final String DATE_FORMAT = "y-M-d";
     private final LocalDate date;
 
@@ -89,7 +92,6 @@ public class BirthDate {
         return (LocalDate.now().isEqual(date) || LocalDate.now().isAfter(date));
     }
 
-    //Add on for Json Conversion in JsonAdaptedParticipants
     /**
      * Returns true if a given String form of birthDate is valid.
      *
@@ -98,16 +100,36 @@ public class BirthDate {
      */
     public static boolean isValidBirthDate(String birthDate) {
         boolean isValid;
+        try {
+            LocalDate date = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
+            isValid = isPresentOrPast(date);
+        } catch (DateTimeParseException e) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if a given String form is a valid date.
+     *
+     * @param date  A String representing a date.
+     * @return      A boolean indicating if it is a valid date.
+     */
+    public static boolean isValidDate(String date) {
+        boolean isValid;
         DateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         sdf.setLenient(false);
         try {
-            sdf.parse(birthDate);
-            LocalDate date = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
-            isValid = isPresentOrPast(date);
+            sdf.parse(date);
+            isValid = true;
         } catch (ParseException e) {
             isValid = false;
         }
         return isValid;
+    }
+
+    public static boolean checkDateComponents(String date) {
+        return date.split("-").length == 3;
     }
 
     @Override

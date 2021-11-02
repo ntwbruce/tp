@@ -106,7 +106,7 @@ public class JsonAdaptedParticipant {
         final Address modelAddress = new Address(address);
 
         BirthDate modelBirthDate;
-        if (!BirthDate.isValidBirthDate(this.birthDate)) {
+        if (!(BirthDate.isValidDate(this.birthDate) && BirthDate.isValidBirthDate(this.birthDate))) {
             // throw new IllegalValueException(BirthDate.MESSAGE_DATE_CONSTRAINTS);
             // Can't do this due to BirthDate implementation
             modelBirthDate = BirthDate.notSpecified();

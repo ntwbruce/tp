@@ -22,23 +22,25 @@ public class Messages {
             "Event %1$s Not Found, consider relisting events using '%2$s'";
 
     /**
-     * Forms the message that states that a Participant already exists in an Event in Managera.
-     *
-     * @param participantName The name of the Participant.
-     * @return a message that states that the Participant already exists in an Event.
-     */
-    public static String showParticipantExists(String participantName) {
-        return "Participant " + participantName + " already exists!";
-    }
-
-    /**
      * Forms the message that states that a Participant does not exist in an Event in Managera.
      *
      * @param participantName The name of the Participant.
+     * @param eventName       The name of the Event.
      * @return a message that states that the Participant does not exist in an Event.
      */
-    public static String showParticipantDoesNotExist(String participantName) {
-        return "Participant " + participantName + " doesn't exist in this event!";
+    public static String showParticipantDoesNotExist(String participantName, String eventName) {
+        return String.format("%s is not taking part in %s!", participantName, eventName);
+    }
+
+    /**
+     * Forms the message that indicates a participant is already enrolled in an Event in Managera.
+     *
+     * @param participantName  The name of the Participant.
+     * @param eventName        The name of the Event.
+     * @return a message that states that the participant is already in the given event.
+     */
+    public static String showParticipantAlreadyEnrolled(String participantName, String eventName) {
+        return String.format("%s is already enrolled into %s!", participantName, eventName);
     }
 
     /**

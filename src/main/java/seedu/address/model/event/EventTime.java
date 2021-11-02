@@ -14,7 +14,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class EventTime implements Comparable<EventTime> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be in 2359 format.";
+    public static final String MESSAGE_CONSTRAINTS = "Time should be in 24hr format. "
+            + "Input time should be from 0000 to 2359 inclusive.";
     private static final String TIME_FORMAT = "HHmm";
     private static final String TIME_DISPLAY_FORMAT = "HH:mm";
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ZERO_BASED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteNextOfKinCommand;
@@ -17,13 +16,8 @@ public class DeleteNextOfKinParser implements Parser<DeleteNextOfKinCommand> {
                     MESSAGE_INVALID_COMMAND_FORMAT, DeleteNextOfKinCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Index nokIndex = ParserUtil.parseIndex(sections[1]);
-            Index participantIndex = ParserUtil.parseIndex(sections[2]);
-            return new DeleteNextOfKinCommand(nokIndex, participantIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_ZERO_BASED_INDEX);
-        }
-
+        Index nokIndex = ParserUtil.parseIndex(sections[1]);
+        Index participantIndex = ParserUtil.parseIndex(sections[2]);
+        return new DeleteNextOfKinCommand(nokIndex, participantIndex);
     }
 }

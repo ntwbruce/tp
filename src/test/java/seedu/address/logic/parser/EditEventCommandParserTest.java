@@ -72,13 +72,13 @@ public class EditEventCommandParserTest {
         // invalid EventName
         assertParseFailure(parser, "1" + INVALID_EVENT_NAME_DESC, EventName.MESSAGE_CONSTRAINTS);
         // invalid EventDate
-        assertParseFailure(parser, "1" + INVALID_EVENT_DATE_DESC, EventDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_EVENT_DATE_DESC, EventDate.MESSAGE_DATE_FORMAT_ERROR);
         // invalid EventTime
         assertParseFailure(parser, "1" + INVALID_EVENT_TIME_DESC, EventTime.MESSAGE_CONSTRAINTS);
 
         // valid EventName followed by invalid EventDate
         assertParseFailure(parser, "1" + EVENT_NAME_DESC_JOGGING + INVALID_EVENT_DATE_DESC,
-                EventDate.MESSAGE_CONSTRAINTS);
+                EventDate.MESSAGE_DATE_FORMAT_ERROR);
 
         // invalid EventName followed by valid EventDate
         assertParseFailure(parser, "1" + INVALID_EVENT_NAME_DESC + EVENT_DATE_DESC_JOGGING,
