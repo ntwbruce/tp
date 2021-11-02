@@ -60,7 +60,7 @@ public class EventDate implements Comparable<EventDate> {
         LocalDate date = LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));
         return (LocalDate.now().isEqual(date) || LocalDate.now().isBefore(date));
     }
-        
+
     public static boolean checkDateComponents(String date) {
         return date.split("-").length == 3;
     }
